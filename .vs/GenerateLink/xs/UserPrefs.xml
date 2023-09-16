@@ -1,0 +1,37 @@
+﻿<Properties StartupConfiguration="{15F69BDD-C1CB-4A8D-A085-E3CD7568A47B}|Default">
+  <MonoDevelop.Ide.ItemProperties.GenerateLink PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="GenerateLink/Controllers/GenerateLinkController.cs">
+    <Files>
+      <File FileName="GenerateLink/Controllers/GenerateLinkController.cs" Line="47" Column="57" />
+      <File FileName="GenerateLink/Model/GenerateLink.cs" Line="13" Column="37" />
+      <File FileName="GenerateLink/Model/AuthRequestModel.cs" Line="26" Column="3" />
+      <File FileName="GenerateLink/Model/InquiryRequestModel.cs" Line="26" Column="26" />
+      <File FileName="GenerateLink/Model/ConfirmRequestModel.cs" Line="65" Column="34" />
+      <File FileName="GenerateLink/Model/TBaseResultModel.cs" Line="15" Column="35" />
+      <File FileName="GenerateLink/Properties/launchSettings.json" Line="9" Column="6" />
+      <File FileName="GenerateLink/Program.cs" Line="18" Column="34" />
+      <File FileName="GenerateLink/appsettings.json" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="GenerateLink">
+            <Node name="GenerateLink">
+              <Node name="Controllers" expanded="True">
+                <Node name="GenerateLinkController.cs" selected="True" />
+              </Node>
+              <Node name="Properties" expanded="True" />
+              <Node name="appsettings.json" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

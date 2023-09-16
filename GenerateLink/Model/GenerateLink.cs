@@ -16,6 +16,8 @@ namespace GenerateLink.Model
         public string MerchantId { get; set; } = string.Empty;
         [JsonPropertyName("transaction_id")]
         public string TransactionId { get; set; } = string.Empty;
+        [JsonPropertyName("hash")]
+        public string Hash { get; set; } = string.Empty;
     }
 
     public class ResponseGenerateLink
