@@ -3,6 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using GenerateLink.Model;
 using System.Text.Json;
+using GenerateLink.BaseUrl;
 
 namespace GenerateLink.Logic
 {
@@ -34,7 +35,7 @@ namespace GenerateLink.Logic
             var json = JsonSerializer.Serialize(data);
             var client = new HttpClient();
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var url = "http://dc.oone.bz:40011/security/authorize";
+            var url = BaseUrls.AuthorizeUrl;
             var response = await client.PostAsync(url, content);
 
             var jsonResult = await response.Content.ReadAsStringAsync();

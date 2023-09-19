@@ -6,6 +6,7 @@ using System;
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
+using GenerateLink.BaseUrl;
 
 namespace GenerateLink.Controllers
 {
@@ -69,7 +70,7 @@ namespace GenerateLink.Controllers
             var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer {authTokenModel!.Token}");
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var url = "http://dc.oone.bz:40010/payment/v4/inquiry";
+            var url = BaseUrls.InquiryUrl;
             var response = await client.PostAsync(url, content);
 
             var jsonResult = await response.Content.ReadAsStringAsync();
@@ -106,7 +107,7 @@ namespace GenerateLink.Controllers
             var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer {authTokenModel!.Token}");
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var url = "http://dc.oone.bz:40010/payment/v2/confirm";
+            var url = BaseUrls.SubmitUrl;
             var response = await client.PostAsync(url, content);
 
             var jsonResult = await response.Content.ReadAsStringAsync();

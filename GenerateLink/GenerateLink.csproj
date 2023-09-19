@@ -12,8 +12,10 @@
 
   <ItemGroup>
     <None Remove="Logic\" />
+    <None Remove="BaseUrl\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logic\" />
+    <Folder Include="BaseUrl\" />
   </ItemGroup>
 </Project>
