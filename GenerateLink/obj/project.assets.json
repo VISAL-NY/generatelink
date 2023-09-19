@@ -442,11 +442,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/visalny/generatelink/GenerateLink/GenerateLink.csproj",
+      "projectUniqueName": "/Users/visalny/BankDeepLink/generatelink/GenerateLink/GenerateLink.csproj",
       "projectName": "GenerateLink",
-      "projectPath": "/Users/visalny/generatelink/GenerateLink/GenerateLink.csproj",
+      "projectPath": "/Users/visalny/BankDeepLink/generatelink/GenerateLink/GenerateLink.csproj",
       "packagesPath": "/Users/visalny/.nuget/packages/",
-      "outputPath": "/Users/visalny/generatelink/GenerateLink/obj/",
+      "outputPath": "/Users/visalny/BankDeepLink/generatelink/GenerateLink/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/visalny/.nuget/NuGet/NuGet.Config"

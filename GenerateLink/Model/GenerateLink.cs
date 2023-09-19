@@ -10,7 +10,7 @@ namespace GenerateLink.Model
         [JsonPropertyName("mobile_deep_link")]
         public string MobileDeepLink { get; set; } = string.Empty;
     }
-    public class RequestGenerateLink
+    public class RequestDeepLink
     {
         [JsonPropertyName("merchant_id")]
         public string MerchantId { get; set; } = string.Empty;
@@ -20,7 +20,7 @@ namespace GenerateLink.Model
         public string Hash { get; set; } = string.Empty;
     }
 
-    public class ResponseGenerateLink
+    public class ResponseDeepLink
     {
         [JsonPropertyName("code")]
         public string Code { get; set; }=string.Empty;

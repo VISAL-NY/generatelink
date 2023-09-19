@@ -1,4 +1,5 @@
-﻿using GenerateLink.Model;
+﻿using GenerateLink.Logic;
+using GenerateLink.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,41 +11,32 @@ namespace GenerateLink.Controllers
 {
     //[Route("api/[controller]")]
     [ApiController]
-    public class GenerateLinkController : ControllerBase
+    public class DeepLinkController : ControllerBase
     {
-        List<string> merchantIds = new List<string>() { "333","444","555", "8275" };
+        //List<string> merchantIds = new List<string>() { "333","444","555", "8275" };
 
-        private async Task<AuthResponseModel?> GetAuthToken()
-        {
-            var data = new AuthRequestModel()
-            {
-                Email = "bank6@gmail.com",
-                Password = "bank6",
-                ClientId = "bank_client",
-                Secret = "Wuq98rPLwYfvDJ2e",
-                RefreshToken = ""
-            };
-            var json = JsonSerializer.Serialize(data);
-            var client = new HttpClient();
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var url = "http://dc.oone.bz:40011/security/authorize";
-            var response = await client.PostAsync(url, content);
-
-            var jsonResult = await response.Content.ReadAsStringAsync();
-
-            return JsonSerializer.Deserialize<AuthResponseModel>(jsonResult);
-        }
+        
 
         [HttpPost("transaction/generatelinks")]
-        public async  Task<ActionResult<ResponseGenerateLink?>> GenerateLink(RequestGenerateLink model)
+        public async  Task<ActionResult<ResponseDeepLink?>> GenerateLink(RequestDeepLink model)
         {
             var webUrl = "https://deeplinkweb.vercel.app/#/checkout/";
-            var deepLink = "http://bankdeeplink.net/";
-            var response = new ResponseGenerateLink();
-            if (!merchantIds.Contains(model.MerchantId))
+            var deepLink = "https://bankdeeplink.net/";
+            var response = new ResponseDeepLink();
+
+            //if (!merchantIds.Contains(model.MerchantId))
+            //{
+            //    response.Code = "001";
+            //    response.Message = "Merchant Not Found";
+            //    return response;
+            //}
+
+            var verify = DeeplinkLogic.ValidateHMACSHA512Hash(model.MerchantId + model.TransactionId, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJiaWxsMjQifQ.u8sNhKeJo5CCtqDCanWL23sn9IaO2FHd9VGeqSA6XM0", model.Hash);
+
+            if (!verify)
             {
-                response.Code = "ERR_MERCHANT_NOT_MATCH";
-                response.Message = "Merchant Not Found";
+                response.Code = "002";
+                response.Message = "Invalide hash";
                 return response;
             }
 
@@ -52,7 +44,7 @@ namespace GenerateLink.Controllers
             byte[] enCodeString = Encoding.UTF8.GetBytes(originalData);
             string base64String = Convert.ToBase64String(enCodeString);
 
-            response.Code = "success";
+            response.Code = "000";
             response.Message = "Generate Success";
             response.Data = new Link()
             {
@@ -66,7 +58,7 @@ namespace GenerateLink.Controllers
         [HttpPost("inquiry")]
         public async Task<ActionResult<TBaseResultModel<InquiryResponseModel>>> InquiryAsyn(InquiryRequestModel model)
         {
-            var authTokenModel = await GetAuthToken();
+            var authTokenModel = await DeeplinkLogic.GetAuthToken();
             var data = new InquiryRequestModel()
             {
                 Currency = model.Currency,
@@ -89,7 +81,7 @@ namespace GenerateLink.Controllers
         [HttpPost("submit")]
         public async Task<ActionResult<TBaseResultModel<ConfirmResponseModel>>> SubmitAsyn(ConfirmRequestModel model)
         {
-            var authTokenModel = await GetAuthToken();
+            var authTokenModel = await DeeplinkLogic.GetAuthToken();
             var data = new ConfirmRequestModel()
             {
                 BillCode = model.BillCode,
