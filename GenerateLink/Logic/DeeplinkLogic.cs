@@ -9,14 +9,14 @@ namespace GenerateLink.Logic
 {
 	public class DeeplinkLogic
 	{
-        public static string GenerateHMACSHA512Hash(string merchantTranId, string hashToken)
+        public static  string GenerateHMACSHA512Hash(string merchantTranId, string hashToken)
         {
             var hmac = new HMACSHA512(Encoding.UTF8.GetBytes(hashToken));
             byte[] dataBytes = Encoding.UTF8.GetBytes(merchantTranId);
             byte[] hashByte = hmac.ComputeHash(dataBytes);
             return Convert.ToBase64String(hashByte);
         }
-        public static bool ValidateHMACSHA512Hash(string merchantTranId, string hashToken, string generatedHashToCheck)
+        public  static bool ValidateHMACSHA512Hash(string merchantTranId, string hashToken, string generatedHashToCheck)
         {
             string generatedHash = GenerateHMACSHA512Hash(merchantTranId, hashToken);
             return generatedHash == generatedHashToCheck;

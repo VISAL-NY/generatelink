@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "OyRMtUmPFCPHCkWkSrJvHhSbnAT6kF+aMcs8x/ud4Zs0NqfhvXInrBYsH7P6/sUAwB5V4Wk4hpUI4wgM9R4F5Q==",
+  "dgSpecHash": "8dDPNcxJsaTUwD08RT6cB4VR6W9N+C+hv5vTZtgMQuuUUi6plTFEMlXnQbtkBoHff1Qo4WLuN3rzAp2dYvAXfQ==",
   "success": true,
   "projectFilePath": "/Users/visalny/BankDeepLink/generatelink/GenerateLink/GenerateLink.csproj",
   "expectedPackageFiles": [
     "/Users/visalny/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "/Users/visalny/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/visalny/.nuget/packages/microsoft.visualstudio.azure.containers.tools.targets/1.19.5/microsoft.visualstudio.azure.containers.tools.targets.1.19.5.nupkg.sha512",
     "/Users/visalny/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "/Users/visalny/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "/Users/visalny/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",

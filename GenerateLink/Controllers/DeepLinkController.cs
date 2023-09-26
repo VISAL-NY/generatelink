@@ -21,8 +21,8 @@ namespace GenerateLink.Controllers
         [HttpPost("transaction/generatelinks")]
         public async  Task<ActionResult<ResponseDeepLink?>> GenerateLink(RequestDeepLink model)
         {
-            var webUrl = "https://deeplinkweb.vercel.app/#/checkout/";
-            var deepLink = "https://bankdeeplink.net/";
+            var webUrl = "http://192.168.197.7:40123/checkout/";
+            var deepLink = "https://deeplink-sample.bill24.io/checkout/";
             var response = new ResponseDeepLink();
 
             //if (!merchantIds.Contains(model.MerchantId))
@@ -38,7 +38,7 @@ namespace GenerateLink.Controllers
             {
                 response.Code = "002";
                 response.Message = "Invalide hash";
-                return response;
+                return  response;
             }
 
             string originalData=model.MerchantId +"-"+ model.TransactionId;
@@ -52,8 +52,9 @@ namespace GenerateLink.Controllers
                 WebPaymentUrl = webUrl + $"{base64String}",
                 MobileDeepLink = deepLink + $"{base64String}",
             };
-              
-            return Ok(response);
+
+            //return  Ok(response);
+            return await Task.FromResult<ActionResult<ResponseDeepLink?>>(response);
         }
 
         [HttpPost("inquiry")]

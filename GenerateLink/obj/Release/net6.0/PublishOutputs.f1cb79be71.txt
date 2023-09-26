@@ -1,0 +1,11 @@
+/Users/visalny/BankDeepLink/generatelink/GenerateLink/obj/Release/net6.0/PubTmp/Out/GenerateLink
+/Users/visalny/BankDeepLink/generatelink/GenerateLink/obj/Release/net6.0/PubTmp/Out/appsettings.Development.json
+/Users/visalny/BankDeepLink/generatelink/GenerateLink/obj/Release/net6.0/PubTmp/Out/appsettings.json
+/Users/visalny/BankDeepLink/generatelink/GenerateLink/obj/Release/net6.0/PubTmp/Out/GenerateLink.dll
+/Users/visalny/BankDeepLink/generatelink/GenerateLink/obj/Release/net6.0/PubTmp/Out/GenerateLink.deps.json
+/Users/visalny/BankDeepLink/generatelink/GenerateLink/obj/Release/net6.0/PubTmp/Out/GenerateLink.runtimeconfig.json
+/Users/visalny/BankDeepLink/generatelink/GenerateLink/obj/Release/net6.0/PubTmp/Out/GenerateLink.pdb
+/Users/visalny/BankDeepLink/generatelink/GenerateLink/obj/Release/net6.0/PubTmp/Out/Microsoft.OpenApi.dll
+/Users/visalny/BankDeepLink/generatelink/GenerateLink/obj/Release/net6.0/PubTmp/Out/Swashbuckle.AspNetCore.Swagger.dll
+/Users/visalny/BankDeepLink/generatelink/GenerateLink/obj/Release/net6.0/PubTmp/Out/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/visalny/BankDeepLink/generatelink/GenerateLink/obj/Release/net6.0/PubTmp/Out/Swashbuckle.AspNetCore.SwaggerUI.dll
