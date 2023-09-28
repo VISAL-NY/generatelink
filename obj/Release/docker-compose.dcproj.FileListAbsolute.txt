@@ -1,0 +1,14 @@
+/Users/visalny/BankDeepLink/generatelink/bin/Release/GenerateLink.deps.json
+/Users/visalny/BankDeepLink/generatelink/bin/Release/GenerateLink.runtimeconfig.json
+/Users/visalny/BankDeepLink/generatelink/bin/Release/appsettings.Development.json
+/Users/visalny/BankDeepLink/generatelink/bin/Release/appsettings.json
+/Users/visalny/BankDeepLink/generatelink/bin/Release/GenerateLink
+/Users/visalny/BankDeepLink/generatelink/bin/Release/GenerateLink.dll
+/Users/visalny/BankDeepLink/generatelink/bin/Release/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/visalny/BankDeepLink/generatelink/bin/Release/Swashbuckle.AspNetCore.Swagger.dll
+/Users/visalny/BankDeepLink/generatelink/bin/Release/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/visalny/BankDeepLink/generatelink/bin/Release/Microsoft.OpenApi.dll
+/Users/visalny/BankDeepLink/generatelink/bin/Release/GenerateLink.pdb
+/Users/visalny/BankDeepLink/generatelink/obj/Release/docker-compose.dcproj.AssemblyReference.cache
+/Users/visalny/BankDeepLink/generatelink/obj/Release/docker-compose.dcproj.CoreCompileInputs.cache
+/Users/visalny/BankDeepLink/generatelink/obj/Release/docker-compose.dcproj.CopyComplete

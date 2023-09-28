@@ -17,7 +17,6 @@ namespace GenerateLink.Controllers
         //List<string> merchantIds = new List<string>() { "333","444","555", "8275" };
 
         
-
         [HttpPost("transaction/generatelinks")]
         public async  Task<ActionResult<ResponseDeepLink?>> GenerateLink(RequestDeepLink model)
         {
@@ -34,14 +33,14 @@ namespace GenerateLink.Controllers
 
             var verify = DeeplinkLogic.ValidateHMACSHA512Hash(model.MerchantId + model.TransactionId, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJiaWxsMjQifQ.u8sNhKeJo5CCtqDCanWL23sn9IaO2FHd9VGeqSA6XM0", model.Hash);
 
-            if (!verify)
-            {
-                response.Code = "002";
-                response.Message = "Invalide hash";
-                return  response;
-            }
+            //if (!verify)
+            //{
+            //    response.Code = "002";
+            //    response.Message = "Invalide hash";
+            //    return  response;
+            //}
 
-            string originalData=model.MerchantId +"-"+ model.TransactionId;
+            string originalData=model.TransactionId;
             byte[] enCodeString = Encoding.UTF8.GetBytes(originalData);
             string base64String = Convert.ToBase64String(enCodeString);
 
@@ -57,54 +56,46 @@ namespace GenerateLink.Controllers
             return await Task.FromResult<ActionResult<ResponseDeepLink?>>(response);
         }
 
-        [HttpPost("inquiry")]
-        public async Task<ActionResult<TBaseResultModel<InquiryResponseModel>>> InquiryAsyn(InquiryRequestModel model)
+        [HttpPost("transaction/inquiryV4")]
+        public async Task<ActionResult<TBaseResultModel<InquiryV4ResponseModel>>> InquiryV4Asyn(InquiryV4RequestModel model)
         {
             var authTokenModel = await DeeplinkLogic.GetAuthToken();
-            var data = new InquiryRequestModel()
-            {
-                Currency = model.Currency,
-                CustomerCode = model.CustomerCode,
-                BillCode = model.BillCode
-            };
-            var json = JsonSerializer.Serialize(data);
+           
+            var json = JsonSerializer.Serialize(model);
             var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer {authTokenModel!.Token}");
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var url = BaseUrls.InquiryUrl;
+            var url = BaseUrls.InquiryV4Url;
             var response = await client.PostAsync(url, content);
 
             var jsonResult = await response.Content.ReadAsStringAsync();
-            var result = JsonSerializer.Deserialize<TBaseResultModel<InquiryResponseModel>>(jsonResult);
+            var result = JsonSerializer.Deserialize<TBaseResultModel<InquiryV4ResponseModel>>(jsonResult);
+
+            return Ok(result);
+        }
+        [HttpPost("transaction/inquiryv5")]
+        public async Task<ActionResult<TBaseResultModel<InquiryV5ResponseModel>>> InquiryV5Async(InquiryV5RequestModel model)
+        {
+            var authTokenmodel = await DeeplinkLogic.GetAuthToken();
+            var json = JsonSerializer.Serialize(model);
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {authTokenmodel!.Token}");
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var url = BaseUrls.InquiryV5Url;
+            var response = await client.PostAsync(url, content);
+
+            var jsonResult = await response.Content.ReadAsStringAsync();
+            var result = JsonSerializer.Deserialize<TBaseResultModel<InquiryV5ResponseModel>>(jsonResult);
 
             return Ok(result);
         }
 
-        [HttpPost("submit")]
+        [HttpPost("transaction/submit")]
         public async Task<ActionResult<TBaseResultModel<ConfirmResponseModel>>> SubmitAsyn(ConfirmRequestModel model)
         {
             var authTokenModel = await DeeplinkLogic.GetAuthToken();
-            var data = new ConfirmRequestModel()
-            {
-                BillCode = model.BillCode,
-                CustomerCode = model.CustomerCode,
-                BillAmount = model.BillAmount,
-                TotalAmount = model.TotalAmount,
-                Currency = model.Currency,
-                PaymentToken = model.PaymentToken,
-                PaymentBy = model.PaymentBy,
-                PaymentAccount = model.PaymentAccount,
-                PaymentType = model.PaymentType,
-                RefNo = Guid.NewGuid(),
-                Note = model.Note,
-                PaymentAccountName = model.PaymentAccountName,
-                PaymentAccountPhoneNumber = model.PaymentAccountPhoneNumber,
-                PaymentFee = model.PaymentFee,
-                PaymentChannel = model.PaymentChannel,
-                PaymentFeeChargeBy = model.PaymentFeeChargeBy
-
-            };
-            var json = JsonSerializer.Serialize(data);
+           
+            var json = JsonSerializer.Serialize(model);
             var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer {authTokenModel!.Token}");
             var content = new StringContent(json, Encoding.UTF8, "application/json");

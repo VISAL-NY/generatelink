@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace GenerateLink.Model
 {
-    public class InquiryRequestModel
+    public class InquiryV4RequestModel
     {
         [JsonPropertyName("currency")]
         public string Currency { get; set; } = string.Empty;
@@ -13,7 +13,7 @@ namespace GenerateLink.Model
         public string BillCode { get; set; } = string.Empty;
     }
 
-    public class InquiryResponseModel
+    public class InquiryV4ResponseModel
     {
         [JsonPropertyName("supplier")]
         public Supplier Supplier { get; set; } = new();
@@ -22,6 +22,15 @@ namespace GenerateLink.Model
         [JsonPropertyName("balances")]
         public List<Balances> Balances { get; set; } = new List<Balances>();
     }
+
+    public class InquiryV5RequestModel
+    {
+        [JsonPropertyName("identity_code")]
+        public string IdentityCode { get; set; } = string.Empty;
+        [JsonPropertyName("fee_channel")]
+        public string FeeChannel { get; set; } = string.Empty;
+    }
+    
 
     public class Supplier
     {
@@ -97,5 +106,65 @@ namespace GenerateLink.Model
         public decimal PaidAmount { get; set; }
         [JsonPropertyName("total_amount")]
         public decimal TotalAmount { get; set; }
+    }
+
+    public class InquiryV5ResponseModel
+    {
+        [JsonPropertyName("merchant")]
+        public MerchantV5 Merchant { get; set; } = new();
+        [JsonPropertyName("customers")]
+        public List<CustomerV5> Customers { get; set; } = new();
+        [JsonPropertyName("transaction")]
+        public Transaction Transaction { get; set; } = new();
+        [JsonPropertyName("url")]
+        public URL Url { get; set; } = new();
+
+    }
+
+    public class MerchantV5 : Supplier
+    {
+
+    }
+    public class CustomerV5 : Customer
+    {
+        [JsonPropertyName("branch_code")]
+        public string BranchCode { get; set; } = string.Empty;
+        [JsonPropertyName("branch_name")]
+        public string BranchName { get; set; } = string.Empty;
+        [JsonPropertyName("bill_no")]
+        public string BillNo { get; set; } = string.Empty;
+        [JsonPropertyName("amount")]
+        public decimal Amount { get; set; }
+    }
+    public class Transaction
+    {
+        [JsonPropertyName("id")]
+        public string Id { get; set; } = string.Empty;
+        [JsonPropertyName("original_amount")]
+        public decimal OriginalAmount { get; set; }
+        [JsonPropertyName("convenience_fee_amount")]
+        public decimal ConvinienceFeeAmount { get; set; }
+        [JsonPropertyName("sponsor_fee_amount")]
+        public decimal SponsorFeeAmount { get; set; }
+        [JsonPropertyName("fee_channel")]
+        public string FeeChannel { get; set; } = string.Empty;
+        [JsonPropertyName("total_amount")]
+        public decimal TotalAmount { get; set; }
+        [JsonPropertyName("currency")]
+        public string Currency { get; set; } = string.Empty;
+        [JsonPropertyName("description")]
+        public string Description { get; set; } = string.Empty;
+        [JsonPropertyName("min")]
+        public decimal Min { get; set; }
+        [JsonPropertyName("max")]
+        public decimal Max { get; set; }
+        [JsonPropertyName("payment_token")]
+        public string PaymentToken { get; set; } = string.Empty;
+
+    }
+    public class URL
+    {
+        [JsonPropertyName("return_url")]
+        public string ReturnUrl { get; set; } = string.Empty;
     }
 }

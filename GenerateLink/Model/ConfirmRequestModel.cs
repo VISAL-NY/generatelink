@@ -24,7 +24,7 @@ namespace GenerateLink.Model
 		[JsonPropertyName("payment_type")]
 		public string PaymentType { get; set; } = string.Empty;
 		[JsonPropertyName("ref_no")]
-		public Guid RefNo { get; set; }
+		public string RefNo { get; set; } = string.Empty;
 		[JsonPropertyName("note")]
 		public string Note { get; set; } = string.Empty;
 		[JsonPropertyName("payment_account_name")]
