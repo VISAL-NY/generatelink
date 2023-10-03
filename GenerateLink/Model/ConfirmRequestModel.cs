@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace GenerateLink.Model
 {
-	public class ConfirmRequestModel
+	public class ConfirmV2RequestModel
 	{
 		[JsonPropertyName("bill_code")]
 		public string BillCode { get; set; } = string.Empty;
@@ -40,7 +40,7 @@ namespace GenerateLink.Model
 
     }
 
-	public class ConfirmResponseModel
+	public class ConfirmV2ResponseModel
 	{
 		[JsonPropertyName("payment_account_name")]
 		public string PaymentAccountName { get; set; } = string.Empty;
@@ -83,6 +83,76 @@ namespace GenerateLink.Model
 		[JsonPropertyName("note")]
 		public string Note { get; set; } = string.Empty;
 	}
-   
+
+public class ConfirmV3RequestModel
+	{
+		[JsonPropertyName("identity_code")]
+		public string IdentityCode { get; set; } = string.Empty;
+		[JsonPropertyName("fee_channel")]
+		public string FeeChannel { get; set; } = string.Empty;
+		[JsonPropertyName("bank_ref")]
+		public string BankRef { get; set; } = string.Empty;
+		[JsonPropertyName("bank_date")]
+		public string BankDate { get; set; } = string.Empty;
+		[JsonPropertyName("original_amount")]
+		public decimal OriginalAmount { get; set; }
+		[JsonPropertyName("convenience_fee_amount")]
+		public decimal ConvenienceFeeAmount { get; set; }
+		[JsonPropertyName("sponsor_fee_amount")]
+		public decimal SponsorFeeAmount { get; set; }
+		[JsonPropertyName("total_amount")]
+		public decimal TotalAmount { get; set; }
+		[JsonPropertyName("currency")]
+		public string Currency { get; set; } = string.Empty;
+		[JsonPropertyName("description")]
+		public string Description { get; set; } = string.Empty;
+		[JsonPropertyName("payment_token")]
+		public string PaymentToken { get; set; } = string.Empty;
+		[JsonPropertyName("payer_account_no")]
+		public string PayerAccountNo { get; set; } = string.Empty;
+		[JsonPropertyName("payer_account_name")]
+		public string PayerAccountName { get; set; } = string.Empty;
+		[JsonPropertyName("payer_phone")]
+		public string PayerPhone { get; set; } = string.Empty;
+	}
+  
+	public class ConfirmV3ResponseModel
+	{
+		[JsonPropertyName("merchant")]
+		public MerchantResponeV3 Merchant { get; set; } = new();
+		[JsonPropertyName("transaction")]
+		public TransactionResponseV3 Transaction { get; set; } = new();
+	}
+
+	public class MerchantResponeV3
+	{
+		[JsonPropertyName("code")]
+		public string Code { get; set; } = string.Empty;
+		[JsonPropertyName("name")]
+		public string Name { get; set; } = string.Empty;
+	}
+	public class TransactionResponseV3
+	{
+		[JsonPropertyName("id")]
+		public string Id { get; set; } = string.Empty;
+		[JsonPropertyName("original_amount")]
+		public decimal OriginamAmount { get; set; }
+		[JsonPropertyName("convenience_fee_amount")]
+		public decimal  ConvenienceFeeAmount{ get; set; }
+		[JsonPropertyName("sponsor_fee_amount")]
+		public decimal SponsorFeeAmount { get; set; }
+		[JsonPropertyName("fee_channel")]
+		public string FeeChannel { get; set; } = string.Empty;
+		[JsonPropertyName("total_amount")]
+		public decimal TotalAmount { get; set; }
+		[JsonPropertyName("currency")]
+		public string Currency { get; set; } = string.Empty;
+		[JsonPropertyName("description")]
+		public string Description { get; set; } = string.Empty;
+		[JsonPropertyName("bank_ref")]
+		public string BankRef { get; set; } = string.Empty;
+	}
+
+  
 }
 

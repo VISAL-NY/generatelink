@@ -9,6 +9,8 @@ namespace GenerateLink.Model
 		public string Email { get; set; } = string.Empty;
 		[JsonPropertyName("password")]
 		public string Password { get; set; } = string.Empty;
+		[JsonPropertyName("oldToken")]
+		public string OldToken { get; set; } = string.Empty;
 		[JsonPropertyName("clientId")]
 		public string ClientId { get; set; } = string.Empty;
 		[JsonPropertyName("secret")]

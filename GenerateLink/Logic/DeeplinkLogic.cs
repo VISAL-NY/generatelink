@@ -26,8 +26,8 @@ namespace GenerateLink.Logic
         {
             var data = new AuthRequestModel()
             {
-                Email = "bank6@gmail.com",
-                Password = "bank6",
+                Email = "sophary.toeng@ubill24.com",
+                OldToken= "ed393c86a1c64168a221ce0a1cb8b0b4",
                 ClientId = "bank_client",
                 Secret = "Wuq98rPLwYfvDJ2e",
                 RefreshToken = ""
