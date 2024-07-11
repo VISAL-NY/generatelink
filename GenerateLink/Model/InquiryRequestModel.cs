@@ -113,7 +113,7 @@ namespace GenerateLink.Model
         [JsonPropertyName("merchant")]
         public MerchantV5 Merchant { get; set; } = new();
         [JsonPropertyName("customers")]
-        public List<CustomerV5> Customers { get; set; } = new();
+        public List<CustomerV5> Customers { get; set; } = new List<CustomerV5>();
         [JsonPropertyName("transaction")]
         public Transaction Transaction { get; set; } = new();
         [JsonPropertyName("url")]
@@ -141,25 +141,27 @@ namespace GenerateLink.Model
         [JsonPropertyName("id")]
         public string Id { get; set; } = string.Empty;
         [JsonPropertyName("original_amount")]
-        public decimal OriginalAmount { get; set; }
+        public decimal? OriginalAmount { get; set; }
         [JsonPropertyName("convenience_fee_amount")]
-        public decimal ConvinienceFeeAmount { get; set; }
+        public decimal? ConvinienceFeeAmount { get; set; }
         [JsonPropertyName("sponsor_fee_amount")]
-        public decimal SponsorFeeAmount { get; set; }
+        public decimal? SponsorFeeAmount { get; set; }
         [JsonPropertyName("fee_channel")]
         public string FeeChannel { get; set; } = string.Empty;
         [JsonPropertyName("total_amount")]
-        public decimal TotalAmount { get; set; }
+        public decimal? TotalAmount { get; set; }
         [JsonPropertyName("currency")]
         public string Currency { get; set; } = string.Empty;
         [JsonPropertyName("description")]
         public string Description { get; set; } = string.Empty;
         [JsonPropertyName("min")]
-        public decimal Min { get; set; }
+        public decimal? Min { get; set; }
         [JsonPropertyName("max")]
-        public decimal Max { get; set; }
+        public decimal? Max { get; set; }
         [JsonPropertyName("payment_token")]
         public string PaymentToken { get; set; } = string.Empty;
+        [JsonPropertyName("redirect_url")]
+        public string RedirectUrl { get; set; } = string.Empty;
 
     }
     public class URL

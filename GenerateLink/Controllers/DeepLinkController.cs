@@ -36,7 +36,7 @@ namespace GenerateLink.Controllers
             //if (!verify)
             //{
             //    response.Code = "002";
-            //    response.Message = "Invalide hash";
+            //    response.Message = "Invalid hash";
             //    return  response;
             //}
 
@@ -56,23 +56,23 @@ namespace GenerateLink.Controllers
             return await Task.FromResult<ActionResult<ResponseDeepLink?>>(response);
         }
 
-        [HttpPost("transaction/inquiryV4")]
-        public async Task<ActionResult<TBaseResultModel<InquiryV4ResponseModel>>> InquiryV4Asyn(InquiryV4RequestModel model)
-        {
-            var authTokenModel = await DeeplinkLogic.GetAuthToken();
+        //[HttpPost("transaction/inquiryV4")]
+        //public async Task<ActionResult<TBaseResultModel<InquiryV4ResponseModel>>> InquiryV4Asyn(InquiryV4RequestModel model)
+        //{
+        //    var authTokenModel = await DeeplinkLogic.GetAuthToken();
            
-            var json = JsonSerializer.Serialize(model);
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {authTokenModel!.Token}");
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var url = BaseUrls.InquiryV4Url;
-            var response = await client.PostAsync(url, content);
+        //    var json = JsonSerializer.Serialize(model);
+        //    var client = new HttpClient();
+        //    client.DefaultRequestHeaders.Add("Authorization", $"Bearer {authTokenModel!.Token}");
+        //    var content = new StringContent(json, Encoding.UTF8, "application/json");
+        //    var url = BaseUrls.InquiryV4Url;
+        //    var response = await client.PostAsync(url, content);
 
-            var jsonResult = await response.Content.ReadAsStringAsync();
-            var result = JsonSerializer.Deserialize<TBaseResultModel<InquiryV4ResponseModel>>(jsonResult);
+        //    var jsonResult = await response.Content.ReadAsStringAsync();
+        //    var result = JsonSerializer.Deserialize<TBaseResultModel<InquiryV4ResponseModel>>(jsonResult);
 
-            return Ok(result);
-        }
+        //    return Ok(result);
+        //}
         [HttpPost("transaction/inquiryV5")]
         public async Task<ActionResult<TBaseResultModel<InquiryV5ResponseModel>>> InquiryV5Async(InquiryV5RequestModel model)
         {
@@ -90,23 +90,23 @@ namespace GenerateLink.Controllers
             return Ok(result);
         }
 
-        [HttpPost("transaction/submitV2")]
-        public async Task<ActionResult<TBaseResultModel<ConfirmV2ResponseModel>>> SubmitV2Asyn(ConfirmV2RequestModel model)
-        {
-            var authTokenModel = await DeeplinkLogic.GetAuthToken();
+        //[HttpPost("transaction/submitV2")]
+        //public async Task<ActionResult<TBaseResultModel<ConfirmV2ResponseModel>>> SubmitV2Asyn(ConfirmV2RequestModel model)
+        //{
+        //    var authTokenModel = await DeeplinkLogic.GetAuthToken();
            
-            var json = JsonSerializer.Serialize(model);
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {authTokenModel!.Token}");
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var url = BaseUrls.SubmitV2Url;
-            var response = await client.PostAsync(url, content);
+        //    var json = JsonSerializer.Serialize(model);
+        //    var client = new HttpClient();
+        //    client.DefaultRequestHeaders.Add("Authorization", $"Bearer {authTokenModel!.Token}");
+        //    var content = new StringContent(json, Encoding.UTF8, "application/json");
+        //    var url = BaseUrls.SubmitV2Url;
+        //    var response = await client.PostAsync(url, content);
 
-            var jsonResult = await response.Content.ReadAsStringAsync();
-            var result = JsonSerializer.Deserialize<TBaseResultModel<ConfirmV2ResponseModel>>(jsonResult);
+        //    var jsonResult = await response.Content.ReadAsStringAsync();
+        //    var result = JsonSerializer.Deserialize<TBaseResultModel<ConfirmV2ResponseModel>>(jsonResult);
 
-            return Ok(result);
-        }
+        //    return Ok(result);
+        //}
 
         [HttpPost("transaction/submitV3")]
         public async Task<ActionResult<TBaseResultModel<ConfirmV3ResponseModel?>>> SubmitV3Asyn(ConfirmV3RequestModel model)

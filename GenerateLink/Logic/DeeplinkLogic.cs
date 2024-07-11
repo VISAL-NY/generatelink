@@ -14,7 +14,9 @@ namespace GenerateLink.Logic
             var hmac = new HMACSHA512(Encoding.UTF8.GetBytes(hashToken));
             byte[] dataBytes = Encoding.UTF8.GetBytes(merchantTranId);
             byte[] hashByte = hmac.ComputeHash(dataBytes);
-            return Convert.ToBase64String(hashByte);
+            string hash = Convert.ToBase64String(hashByte);
+            return hash;
+
         }
         public  static bool ValidateHMACSHA512Hash(string merchantTranId, string hashToken, string generatedHashToCheck)
         {
@@ -26,11 +28,15 @@ namespace GenerateLink.Logic
         {
             var data = new AuthRequestModel()
             {
-                Email = "sophary.toeng@ubill24.com",
-                OldToken= "ed393c86a1c64168a221ce0a1cb8b0b4",
+                //Email = "sophary.toeng@ubill24.com",
+                //OldToken= "47292bfb76de468c9d76dcc88cd6eb60",
+                //ClientId = "bank_client",
+                //Secret = "Wuq98rPLwYfvDJ2e",
+                //RefreshToken = ""
+                Email = "",
+                OldToken = "47292bfb76de468c9d76dcc88cd6eb60",
                 ClientId = "bank_client",
                 Secret = "Wuq98rPLwYfvDJ2e",
-                RefreshToken = ""
             };
             var json = JsonSerializer.Serialize(data);
             var client = new HttpClient();
