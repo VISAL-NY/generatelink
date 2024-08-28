@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8ZWXfgYhAiSOwZTU9zkskBiQe8AU0YjAv0YkWmOw3gzAn5VteAsmUJXLQZ6MplEYsA5Al0sWmznq/VLmRhCwBA==",
+  "dgSpecHash": "RFnbHRmfvtTkdwq8vCXmdaFQzPyGwoW/9pUsAAupeFm8zk2VcIL0aRGB5W0QVq0UXOVNpNRGJjA+OMD+7kyTPg==",
   "success": true,
   "projectFilePath": "/Users/visalny/BankDeepLink/generatelink/GenerateLink/GenerateLink.csproj",
   "expectedPackageFiles": [
@@ -10,7 +10,10 @@
     "/Users/visalny/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "/Users/visalny/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "/Users/visalny/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
-    "/Users/visalny/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+    "/Users/visalny/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
+    "/Users/visalny/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.31/microsoft.aspnetcore.app.ref.6.0.31.nupkg.sha512",
+    "/Users/visalny/.nuget/packages/microsoft.netcore.app.host.osx-x64/6.0.31/microsoft.netcore.app.host.osx-x64.6.0.31.nupkg.sha512",
+    "/Users/visalny/.nuget/packages/microsoft.netcore.app.ref/6.0.31/microsoft.netcore.app.ref.6.0.31.nupkg.sha512"
   ],
   "logs": []
 }

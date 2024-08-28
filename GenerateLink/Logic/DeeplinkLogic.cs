@@ -4,11 +4,23 @@ using System.Text;
 using GenerateLink.Model;
 using System.Text.Json;
 using GenerateLink.BaseUrl;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GenerateLink.Logic
 {
 	public class DeeplinkLogic
 	{
+
+        private readonly AppSetting _appSetting;
+
+        public DeeplinkLogic(IOptions<AppSetting> appSetting)
+        {
+            _appSetting = appSetting.Value;
+        }
+
+
+
         public static  string GenerateHMACSHA512Hash(string merchantTranId, string hashToken)
         {
             var hmac = new HMACSHA512(Encoding.UTF8.GetBytes(hashToken));
@@ -24,29 +36,104 @@ namespace GenerateLink.Logic
             return generatedHash == generatedHashToCheck;
         }
 
-        public static async Task<AuthResponseModel?> GetAuthToken()
+        public async Task<AuthResponseModel?> GetAuthToken()
         {
+
+            var token = _appSetting.OldToken;
+
             var data = new AuthRequestModel()
             {
-                //Email = "sophary.toeng@ubill24.com",
-                //OldToken= "47292bfb76de468c9d76dcc88cd6eb60",
-                //ClientId = "bank_client",
-                //Secret = "Wuq98rPLwYfvDJ2e",
-                //RefreshToken = ""
                 Email = "",
-                OldToken = "47292bfb76de468c9d76dcc88cd6eb60",
+                OldToken = token,
                 ClientId = "bank_client",
                 Secret = "Wuq98rPLwYfvDJ2e",
+                RefreshToken = ""
+                //Email = "",
+                //OldToken = "ed393c86a1c64168a221ce0a1cb8b0b4",
+                //ClientId = "bank_client",
+                //Secret = "Wuq98rPLwYfvDJ2e",
             };
             var json = JsonSerializer.Serialize(data);
             var client = new HttpClient();
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var url = BaseUrls.AuthorizeUrl;
+            var url = _appSetting.AuthorizeUrl;
             var response = await client.PostAsync(url, content);
 
             var jsonResult = await response.Content.ReadAsStringAsync();
 
             return JsonSerializer.Deserialize<AuthResponseModel>(jsonResult);
+        }
+
+        public async Task<ResponseDeepLink> GenerateLinkAsync(RequestDeepLink model)
+        {
+            //var webUrl = "http://192.168.197.7:40123/checkout/";
+            var webUrl = _appSetting.WebUrl;
+            var deepLink = _appSetting.DeepLink;
+            var response = new ResponseDeepLink();
+
+            //if (!merchantIds.Contains(model.MerchantId))
+            //{
+            //    response.Code = "001";
+            //    response.Message = "Merchant Not Found";
+            //    return response;
+            //}
+
+            var verify = DeeplinkLogic.ValidateHMACSHA512Hash(model.MerchantId + model.TransactionId, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJiaWxsMjQifQ.u8sNhKeJo5CCtqDCanWL23sn9IaO2FHd9VGeqSA6XM0", model.Hash);
+
+            //if (!verify)
+            //{
+            //    response.Code = "002";
+            //    response.Message = "Invalid hash";
+            //    return  response;
+            //}
+
+            string originalData = model.TransactionId;
+            byte[] enCodeString = Encoding.UTF8.GetBytes(originalData);
+            string base64String = Convert.ToBase64String(enCodeString);
+
+            response.Code = "000";
+            response.Message = "Generate Success";
+            response.Data = new Link()
+            {
+                WebPaymentUrl = webUrl + $"{base64String}",
+                MobileDeepLink = deepLink + $"{base64String}",
+            };
+
+            //return  Ok(response);
+            return response;
+        }
+
+        public async Task<TBaseResultModel<InquiryV5ResponseModel>?> InquiryV5Async(InquiryV5RequestModel model)
+        {
+            var authTokenmodel = await GetAuthToken();
+            var json = JsonSerializer.Serialize(model);
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {authTokenmodel!.Token}");
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var url = _appSetting.InquiryV5Url;
+            var response = await client.PostAsync(url, content);
+
+            var jsonResult = await response.Content.ReadAsStringAsync();
+            var result = JsonSerializer.Deserialize<TBaseResultModel<InquiryV5ResponseModel>>(jsonResult);
+
+            return result;
+        }
+
+        public async Task<TBaseResultModel<ConfirmV3ResponseModel>?> SubmitV3Asyn(ConfirmV3RequestModel model)
+        {
+            var authTokenModel = await GetAuthToken();
+
+            var json = JsonSerializer.Serialize(model);
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {authTokenModel!.Token}");
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var url = _appSetting.SubmitV3Url;
+            var response = await client.PostAsync(url, content);
+
+            var jsonResult = await response.Content.ReadAsStringAsync();
+            var result = JsonSerializer.Deserialize<TBaseResultModel<ConfirmV3ResponseModel>>(jsonResult);
+
+            return result;
         }
     }
 }

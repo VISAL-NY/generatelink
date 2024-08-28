@@ -1,4 +1,8 @@
 
+using GenerateLink.Controllers;
+using GenerateLink.Logic;
+using GenerateLink.Model;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
@@ -9,6 +13,9 @@ builder.Services.AddCors(o => o.AddPolicy("corsPolicy", builder =>
            .AllowAnyHeader();
 }));
 builder.Services.AddControllers();
+var envConf = builder.Configuration.GetSection("App");
+builder.Services.Configure<AppSetting>(envConf);
+builder.Services.AddScoped<DeeplinkLogic>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
