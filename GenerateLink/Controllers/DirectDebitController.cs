@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 using GenerateLink.Model;
 using GenerateLink.Model.DirectDebit;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
+
 
 namespace GenerateLink.Logic
 {

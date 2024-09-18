@@ -1,12 +1,9 @@
-﻿using System;
+﻿
 using System.Security.Cryptography;
 using System.Text;
 using GenerateLink.Model;
 using System.Text.Json;
-using GenerateLink.BaseUrl;
 using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Mvc;
-using GenerateLink.Model.DirectDebit;
 using System.Net;
 
 namespace GenerateLink.Logic

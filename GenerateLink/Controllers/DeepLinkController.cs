@@ -1,12 +1,7 @@
 ﻿using GenerateLink.Logic;
 using GenerateLink.Model;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Reflection;
-using System.Text;
-using System.Text.Json;
-using GenerateLink.BaseUrl;
+
 
 namespace GenerateLink.Controllers
 {
