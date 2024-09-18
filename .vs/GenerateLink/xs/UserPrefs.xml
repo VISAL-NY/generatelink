@@ -1,13 +1,30 @@
 ﻿<Properties StartupConfiguration="{15F69BDD-C1CB-4A8D-A085-E3CD7568A47B}|Default">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations>
+    <MultiItemSolutionRunConfiguration Id="build" Name="build">
+      <Items>
+        <StartupItem ItemId="{15F69BDD-C1CB-4A8D-A085-E3CD7568A47B}" ItemName="GenerateLink" ConfigurationId="Default" />
+      </Items>
+    </MultiItemSolutionRunConfiguration>
+  </MultiItemStartupConfigurations>
+  <MonoDevelop.Ide.ItemProperties.GenerateLink PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <Debugger.DebugSourceFolders />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/visalny/BankDeepLink/generatelink/GenerateLink/Controllers/DeepLinkController.cs" relfile="GenerateLink/Controllers/DeepLinkController.cs" line="30" column="1" />
+      <Breakpoint file="/Users/visalny/BankDeepLink/generatelink/GenerateLink/Logic/DeeplinkLogic.cs" relfile="GenerateLink/Logic/DeeplinkLogic.cs" line="110" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="GenerateLink/Model/TBaseResultModel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GenerateLink/Logic/DirectDebitLogic.cs">
     <Files>
-      <File FileName="GenerateLink/Controllers/DeepLinkController.cs" Line="91" Column="1" />
-      <File FileName="GenerateLink/Logic/DeeplinkLogic.cs" Line="50" Column="1" />
-      <File FileName="GenerateLink/Model/GenerateLink.cs" />
-      <File FileName="GenerateLink/Model/TBaseResultModel.cs" Line="19" Column="1" />
-      <File FileName="GenerateLink/BaseUrl/BaseUrls.cs" Line="20" Column="1" />
-      <File FileName="GenerateLink/Model/InquiryRequestModel.cs" Line="1" Column="1" />
+      <File FileName="GenerateLink/Controllers/DeepLinkController.cs" Line="23" Column="10" />
+      <File FileName="GenerateLink/appsettings.json" Line="13" Column="1" />
+      <File FileName="GenerateLink/Logic/DeeplinkLogic.cs" Line="39" Column="47" />
+      <File FileName="GenerateLink/Controllers/DirectDebitController.cs" Line="30" Column="51" />
+      <File FileName="GenerateLink/Logic/DirectDebitLogic.cs" Line="50" Column="56" />
+      <File FileName="GenerateLink/BaseUrl/BaseUrls.cs" Line="1" Column="1" />
+      <File FileName="GenerateLink/Model/DirectDebit/DDGenerateLink.cs" Line="52" Column="40" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,9 +33,11 @@
             <Node name="GenerateLink">
               <Node name="BaseUrl" expanded="True" />
               <Node name="Controllers" expanded="True" />
-              <Node name="Logic" expanded="True" />
-              <Node name="Model" expanded="True">
-                <Node name="TBaseResultModel.cs" selected="True" />
+              <Node name="Logic">
+                <Node name="DirectDebitLogic.cs" selected="True" />
+              </Node>
+              <Node name="Model">
+                <Node name="DirectDebit" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -26,20 +45,4 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.GenerateLink PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MultiItemStartupConfigurations>
-    <MultiItemSolutionRunConfiguration Id="build" Name="build">
-      <Items>
-        <StartupItem ItemId="{15F69BDD-C1CB-4A8D-A085-E3CD7568A47B}" ItemName="GenerateLink" ConfigurationId="Default" />
-      </Items>
-    </MultiItemSolutionRunConfiguration>
-  </MultiItemStartupConfigurations>
-  <Debugger.DebugSourceFolders />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/visalny/BankDeepLink/generatelink/GenerateLink/Controllers/DeepLinkController.cs" relfile="GenerateLink/Controllers/DeepLinkController.cs" line="87" column="1" />
-      <Breakpoint file="/Users/visalny/BankDeepLink/generatelink/GenerateLink/Logic/DeeplinkLogic.cs" relfile="GenerateLink/Logic/DeeplinkLogic.cs" line="45" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>

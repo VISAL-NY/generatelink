@@ -6,6 +6,8 @@ using System.Text.Json;
 using GenerateLink.BaseUrl;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Mvc;
+using GenerateLink.Model.DirectDebit;
+using System.Net;
 
 namespace GenerateLink.Logic
 {
@@ -58,8 +60,10 @@ namespace GenerateLink.Logic
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var url = _appSetting.AuthorizeUrl;
             var response = await client.PostAsync(url, content);
-
+            
             var jsonResult = await response.Content.ReadAsStringAsync();
+
+            Console.WriteLine(jsonResult);
 
             return JsonSerializer.Deserialize<AuthResponseModel>(jsonResult);
         }
@@ -67,8 +71,8 @@ namespace GenerateLink.Logic
         public async Task<ResponseDeepLink> GenerateLinkAsync(RequestDeepLink model)
         {
             //var webUrl = "http://192.168.197.7:40123/checkout/";
-            var webUrl = _appSetting.WebUrl;
-            var deepLink = _appSetting.DeepLink;
+            var webUrl = _appSetting.WebUrl+ "/checkout/";
+            var deepLink = _appSetting.DeepLink+ "/checkout/";
             var response = new ResponseDeepLink();
 
             //if (!merchantIds.Contains(model.MerchantId))
@@ -106,12 +110,32 @@ namespace GenerateLink.Logic
         public async Task<TBaseResultModel<InquiryV5ResponseModel>?> InquiryV5Async(InquiryV5RequestModel model)
         {
             var authTokenmodel = await GetAuthToken();
+
+            if (string.IsNullOrEmpty(authTokenmodel!.Issuer) || string.IsNullOrEmpty(authTokenmodel.Token))
+            {
+                return new TBaseResultModel<InquiryV5ResponseModel>()
+                {
+                    Code = "201",
+                    Message = "Invalid token"
+                };
+            }
+
             var json = JsonSerializer.Serialize(model);
             var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer {authTokenmodel!.Token}");
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var url = _appSetting.InquiryV5Url;
+            var url = _appSetting.BaseDomain+ "/payment/v5/inquiry";
             var response = await client.PostAsync(url, content);
+
+
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                return new TBaseResultModel<InquiryV5ResponseModel>()
+                {
+                    Code = "401",
+                    Message = "UnAuthorize"
+                };
+            }
 
             var jsonResult = await response.Content.ReadAsStringAsync();
             var result = JsonSerializer.Deserialize<TBaseResultModel<InquiryV5ResponseModel>>(jsonResult);
@@ -123,12 +147,30 @@ namespace GenerateLink.Logic
         {
             var authTokenModel = await GetAuthToken();
 
+            if (string.IsNullOrEmpty(authTokenModel!.Issuer) || string.IsNullOrEmpty(authTokenModel.Token))
+            {
+                return new TBaseResultModel<ConfirmV3ResponseModel>()
+                {
+                    Code = "201",
+                    Message = "Invalid token"
+                };
+            }
+
             var json = JsonSerializer.Serialize(model);
             var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer {authTokenModel!.Token}");
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var url = _appSetting.SubmitV3Url;
+            var url = _appSetting.BaseDomain+ "/payment/v3/confirm";
             var response = await client.PostAsync(url, content);
+
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                return new TBaseResultModel<ConfirmV3ResponseModel>()
+                {
+                    Code = "401",
+                    Message = "UnAuthorize"
+                };
+            }
 
             var jsonResult = await response.Content.ReadAsStringAsync();
             var result = JsonSerializer.Deserialize<TBaseResultModel<ConfirmV3ResponseModel>>(jsonResult);

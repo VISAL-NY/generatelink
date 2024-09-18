@@ -23,9 +23,11 @@
   <ItemGroup>
     <None Remove="Logic\" />
     <None Remove="BaseUrl\" />
+    <None Remove="Model\DirectDebit\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logic\" />
     <Folder Include="BaseUrl\" />
+    <Folder Include="Model\DirectDebit\" />
   </ItemGroup>
 </Project>

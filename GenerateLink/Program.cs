@@ -16,6 +16,7 @@ builder.Services.AddControllers();
 var envConf = builder.Configuration.GetSection("App");
 builder.Services.Configure<AppSetting>(envConf);
 builder.Services.AddScoped<DeeplinkLogic>();
+builder.Services.AddScoped<DirectDebitLogic>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
