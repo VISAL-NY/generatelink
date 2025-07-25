@@ -20,6 +20,17 @@ builder.Services.AddScoped<DirectDebitLogic>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
+var appVersion = builder.Configuration["App:Version"] ?? "1.0.0";
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "Generate Link API",
+        Version = appVersion,
+        Description = "API for generating deep links"
+    });
+});
+
 
 builder.Services.AddSwaggerGen();
 
