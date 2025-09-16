@@ -120,7 +120,7 @@ namespace GenerateLink.Logic
             var json = JsonSerializer.Serialize(model);
             var client = new HttpClient();
             //client.DefaultRequestHeaders.Add("Authorization", $"Bearer {authTokenmodel!.Token}");
-            client.DefaultRequestHeaders.Add("token", "3c81cc406c554b7a90030efed8a4c23b");
+            client.DefaultRequestHeaders.Add("token", _appSetting.OldToken);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var url = _appSetting.BaseDomain+ "/payment/v5/inquiry";
             var response = await client.PostAsync(url, content);
@@ -157,7 +157,7 @@ namespace GenerateLink.Logic
             var json = JsonSerializer.Serialize(model);
             var client = new HttpClient();
             //client.DefaultRequestHeaders.Add("Authorization", $"Bearer {authTokenModel!.Token}");
-            client.DefaultRequestHeaders.Add("token", "3c81cc406c554b7a90030efed8a4c23b");
+            client.DefaultRequestHeaders.Add("token", _appSetting.OldToken);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var url = _appSetting.BaseDomain+ "/payment/v3/confirm";
             var response = await client.PostAsync(url, content);
